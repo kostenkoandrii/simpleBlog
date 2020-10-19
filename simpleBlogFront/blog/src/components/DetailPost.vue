@@ -9,6 +9,8 @@
 <script>
 import axios from "axios";
 
+const HOST_URL = 'http://localhost:5000'
+
 export default {
   name: "DetailPost",
 
@@ -22,16 +24,18 @@ export default {
       post: {}
     }
   },
+
   computed: {
     data_created () {
       let date = this.post.date_created.replace(/:\d{2}\.\d+Z$/, '');
       return date
     }
   },
+
   methods: {
     getPostDetail() {
       axios
-          .get('http://localhost:5000/blog/post/' + this.post_id + '/',)
+          .get(HOST_URL + '/blog/post/' + this.post_id + '/',)
           .then(response => {
             this.post = response.data
           })

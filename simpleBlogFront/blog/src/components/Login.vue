@@ -19,6 +19,9 @@
 
 <script>
 import axios from 'axios'
+
+const HOST_URL = 'http://localhost:5000'
+
 export default {
   name: "Login",
 
@@ -31,7 +34,7 @@ export default {
   methods: {
     goToBlog () {
       axios
-        .get('http://localhost:5000/blog/login/' + this.username + '/')
+        .get(HOST_URL+ '/blog/login/' + this.username + '/')
         .then(response => {
           this.data = response.data;
           if (response.status === 200) {

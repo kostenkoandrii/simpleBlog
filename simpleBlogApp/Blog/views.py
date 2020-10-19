@@ -35,10 +35,10 @@ class BlogPostViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins
 
 		if user in read_users.all():
 			read_users.remove(user)
-			instance.save()
 		else:
 			read_users.add(user)
-			instance.save()
+
+		instance.save()
 
 		return Response({"message": "OK"}, status=status.HTTP_200_OK)
 
@@ -80,14 +80,9 @@ class UserBlogViewSet(mixins.ListModelMixin, mixins.UpdateModelMixin, GenericVie
 		instance = self.get_object()
 		followed_users = instance.blog_followers_ids
 
-		for post in instance.posts.all():
-			if user in post.users_read_ids.all():
-				post.users_read_ids.remove(user)
-
 		if user in followed_users.all():
 			# unfollow from blog by user
 			followed_users.remove(user)
-			instance.save()
 
 			# deleting read-status from post by user
 			for post in instance.posts.all():
@@ -97,7 +92,8 @@ class UserBlogViewSet(mixins.ListModelMixin, mixins.UpdateModelMixin, GenericVie
 		else:
 			# follow blog by user
 			followed_users.add(user)
-			instance.save()
+
+		instance.save()
 
 		return Response({"message": "OK"}, status=status.HTTP_200_OK)
 

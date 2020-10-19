@@ -135,8 +135,8 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'kostenko.rob@gmail.com'
-EMAIL_HOST_PASSWORD = 'dronskm1212'
+EMAIL_HOST_USER = 'djangomessagesender@gmail.com'
+EMAIL_HOST_PASSWORD = 'djangoMessageSender1234'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
